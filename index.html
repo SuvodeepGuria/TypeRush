@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TypeRush | Modern Typing Test</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="theme-neon">
+
+    <div class="background-globes">
+        <div class="globe globe-1"></div>
+        <div class="globe globe-2"></div>
+    </div>
+
+    <div class="app-container">
+        <!-- Navbar -->
+        <nav class="glass-panel navbar">
+            <div class="logo">
+                <span class="icon">⚡</span> TypeRush
+            </div>
+
+            <div class="nav-actions"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Themes</span>
+                <div class="theme-toggles">
+                    <button class="icon-btn" data-theme="theme-neon" title="Neon">🟣</button>
+                    <button class="icon-btn" data-theme="theme-dark" title="Dark Glass">🌑</button>
+                    <button class="icon-btn" data-theme="theme-forest" title="Forest">🌿</button>
+                </div>
+                <!-- <button id="auth-btn" class="glass-btn small">Login</button> -->
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Config Bar -->
+            <div class="glass-panel config-bar">
+                <div class="config-group">
+                    <button class="text-btn active" data-mode="time">Time</button>
+                    <button class="text-btn" data-mode="words">Words</button>
+                    <button class="text-btn" data-mode="quote">Quote</button>
+                </div>
+                <div class="divider"></div>
+                <div class="config-group" id="config-options">
+                    <button class="text-btn" data-val="15">15</button>
+                    <button class="text-btn active" data-val="30">30</button>
+                    <button class="text-btn" data-val="60">60</button>
+                    <button class="text-btn" data-val="120">120</button>
+                </div>
+            </div>
+
+            <!-- Stats Header (Live) -->
+            <div class="live-stats hidden">
+                <div class="stat-item">
+                    <span class="label">WPM</span>
+                    <span class="value" id="live-wpm">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="label">Time</span>
+                    <span class="value" id="live-timer">30</span>
+                </div>
+            </div>
+
+            <!-- Typing Area -->
+            <div class="typing-container">
+                <!-- Overlay message like 'Click to focus' -->
+                <div id="focus-overlay" class="focus-overlay">
+                    <span>Click here or press any key to focus</span>
+                </div>
+
+                <div id="typing-box" class="typing-box">
+                    <!-- Text will be injected here -->
+                    <div id="words" class="words"></div>
+                    <!-- Cursor -->
+                    <div id="cursor" class="cursor"></div>
+                </div>
+
+                <!-- Reset Button -->
+                <button id="restart-btn" class="icon-btn large" title="Restart Test">
+                    ↻
+                </button>
+            </div>
+
+            <!-- Virtual Keyboard -->
+            <div id="keyboard-container" class="keyboard-container"></div>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="key-tips">
+                <span class="key">tab</span> + <span class="key">enter</span> - restart test
+            </div>
+            <div class="links">
+                <a href="https://github.com/SuvodeepGuria">GitHub</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Results Modal (Hidden by default) -->
+    <div id="results-modal" class="modal hidden">
+        <div class="glass-panel modal-content">
+            <h2>Test Result</h2>
+
+            <div class="stats-grid">
+                <div class="main-stat">
+                    <div class="label">wpm</div>
+                    <div class="value large" id="res-wpm">0</div>
+                </div>
+                <div class="main-stat">
+                    <div class="label">acc</div>
+                    <div class="value large" id="res-acc">0%</div>
+                </div>
+
+                <div class="sub-stats">
+                    <div class="stat-row">
+                        <span>Raw WPM</span>
+                        <span id="res-raw">0</span>
+                    </div>
+                    <div class="stat-row">
+                        <span>Characters</span>
+                        <span id="res-chars">0/0/0/0</span>
+                        <!-- correct/incorrect/extra/missed -->
+                    </div>
+                    <div class="stat-row">
+                        <span>Consistency</span>
+                        <span id="res-consistency">0%</span>
+                    </div>
+                    <div class="stat-row">
+                        <span>Time</span>
+                        <span id="res-time">30s</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="wpm-chart"></canvas>
+            </div>
+
+            <div class="modal-actions">
+                <button id="next-test-btn" class="glass-btn">Next Test ➔</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="js/app.js"></script>
+</body>
+
+</html>
